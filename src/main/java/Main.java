@@ -5,20 +5,22 @@ import static spark.Spark.*;
 
 public class Main {
     public static void main(String[] args){
+        //port(80);
 
-        get("/traceroute/:ip", (req,res)->{
+        get("/hello", (req,res)->{
 
-            Process p = Runtime.getRuntime().exec("traceroute "+req.params(":ip"));
-            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            p.waitFor();
-
-            if (p.exitValue() == 1) return 1;
-
-            StringBuilder Result = new StringBuilder();
-            while (reader.readLine() != null) Result.append(reader.readLine()).append("</br>");
-            reader.close();
-
-            return Result;
+//            Process p = Runtime.getRuntime().exec("traceroute "+req.params(":ip"));
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+//            p.waitFor();
+//
+//            if (p.exitValue() == 1) return 1;
+//
+//            StringBuilder Result = new StringBuilder();
+//            while (reader.readLine() != null) Result.append(reader.readLine()).append("</br>");
+//            reader.close();
+//
+//            return Result;
+            return "hello world";
         });
 
     }
