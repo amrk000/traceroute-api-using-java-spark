@@ -8,7 +8,7 @@ import static spark.Spark.*;
 public class Main {
     public static void main(String[] args){
         
-        port(8080);
+        port(process.env.PORT);
         get("/", (req,res)->{
 
 //            Process p = Runtime.getRuntime().exec("traceroute "+req.params(":ip"));
