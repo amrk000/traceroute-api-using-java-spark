@@ -10,18 +10,16 @@ public class Main {
 
         get("/traceroute/:ip", (req,res)->{
 
-            Process p = Runtime.getRuntime().exec("traceroute "+req.params(":ip"));
+            Process p = Runtime.getRuntime().exec("traceroute -w 2 "+req.params(":ip"));
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            p.waitFor();
 
-            if (p.exitValue() == 1) return 1;
 
-            StringBuilder Result = new StringBuilder();
+            StringBuilder Result = new StringBuilder("");
             while (reader.readLine() != null) Result.append(reader.readLine()).append("</br>");
             reader.close();
 
-            return Result;});
-
+            return Result;
+        });
     }
     static int getHerokuAssignedPort() {
         ProcessBuilder processBuilder = new ProcessBuilder();
