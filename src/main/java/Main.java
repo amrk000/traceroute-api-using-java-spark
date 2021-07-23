@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import static spark.Spark.*;
 
 public class Main {
@@ -5,10 +8,19 @@ public class Main {
 
         port(getHerokuAssignedPort());
 
-        get("/", (req,res)->{
+        get("/traceroute/:ip", (req,res)->{
 
-            return "hello world ";
-        });
+            Process p = Runtime.getRuntime().exec("traceroute "+req.params(":ip"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            p.waitFor();
+
+            if (p.exitValue() == 1) return 1;
+
+            StringBuilder Result = new StringBuilder();
+            while (reader.readLine() != null) Result.append(reader.readLine()).append("</br>");
+            reader.close();
+
+            return Result;});
 
     }
     static int getHerokuAssignedPort() {
