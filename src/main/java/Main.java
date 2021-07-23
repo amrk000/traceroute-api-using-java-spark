@@ -1,3 +1,4 @@
+import spark.Spark;
 import spark.utils.SparkUtils;
 
 import java.io.BufferedReader;
@@ -8,13 +9,13 @@ import static spark.Spark.*;
 public class Main {
     public static void main(String[] args){
         try{
-        Spark.setPort(8080);
-        get("/", (req,res)->{
+            Spark.setPort(8080);
+            get("/", (req,res)->{
 
-            return "hello world";
-        });
+                return "hello world";
+            });
 
+        }
+        catch(Exception e) {e.printStackTrace();}
     }
-     catch(Exception e) {e.printStackTrace;}
 }
-    }
