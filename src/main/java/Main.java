@@ -9,18 +9,12 @@ import static spark.Spark.*;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
-        for(int port=10;port<=8080;port++){
-            Thread.sleep(1000);
-            try{
-                Spark.setPort(port);
-                final int p = port;
-                get("/", (req,res)->{
+        port($PORT);
 
-                    return "hello world "+p;
-                });
-                break;
-            }
-            catch(Exception e) {e.printStackTrace();}
-        }
+        get("/", (req,res)->{
+
+            return "hello world ";
+        });
+
     }
 }
