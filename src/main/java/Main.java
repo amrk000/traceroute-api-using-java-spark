@@ -8,22 +8,22 @@ public class Main {
 
         port(getHerokuAssignedPort());
 
-//         get("/traceroute/:ip", (req,res)->{
+        get("/traceroute/:ip", (req,res)->{
 
-//             Process p = Runtime.getRuntime().exec("traceroute -w 2 "+req.params(":ip"));
-//             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            Process p = Runtime.getRuntime().exec("traceroute -w 2 "+req.params(":ip"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 
-//             StringBuilder Result = new StringBuilder("");
-//             while (reader.readLine() != null) Result.append(reader.readLine()).append("</br>");
-//             reader.close();
+            StringBuilder Result = new StringBuilder("");
+            while (reader.readLine() != null) Result.append(reader.readLine()).append("</br>");
+            reader.close();
 
-//             return Result;
-//         });
+            return Result;
+        });
         
         get("/", (req,res)->{
 
-            return "hello world";
+            return "Ping Toolkit - Traceroute";
         });
     }
     static int getHerokuAssignedPort() {
