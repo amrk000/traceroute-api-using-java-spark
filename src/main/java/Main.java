@@ -11,6 +11,7 @@ public class Main {
         get("/traceroute/:ip", (req,res)->{
 
             Process p = Runtime.getRuntime().exec("traceroute -w 2 "+req.params(":ip"));
+            p.waitFor();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
 
