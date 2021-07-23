@@ -8,14 +8,17 @@ import static spark.Spark.*;
 
 public class Main {
     public static void main(String[] args){
+        
+        for(int port;port<=8080;port++){
         try{
-            Spark.setPort(8080);
+            Spark.setPort(port);
             get("/", (req,res)->{
 
-                return "hello world";
+                return "hello world "+port;
             });
-
+        
         }
         catch(Exception e) {e.printStackTrace();}
+        }
     }
 }
