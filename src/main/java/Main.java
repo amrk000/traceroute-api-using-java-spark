@@ -12,7 +12,6 @@ public class Main {
             p.waitFor();
             BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-
             StringBuilder Result = new StringBuilder("");
             while (reader.readLine() != null) Result.append(reader.readLine()).append("</br>");
             reader.close();
