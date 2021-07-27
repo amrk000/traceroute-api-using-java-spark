@@ -5,7 +5,7 @@ import static spark.Spark.*;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-
+        port(80);
         get("/traceroute/:ip", (req,res)->{
 
             Process p = Runtime.getRuntime().exec("traceroute -w 2 "+req.params(":ip"));
